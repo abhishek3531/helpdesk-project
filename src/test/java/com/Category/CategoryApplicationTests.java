@@ -101,17 +101,19 @@ class CategoryApplicationTests {
 	@Test
 	public void givenCategoryObject_whenCreateCategory_thenReturnSavedCategory() throws Exception {
 		// given - precondition or setup
-		List<Category> categories=new  ArrayList<>();
+		List<Category> categories = new ArrayList<>();
 		Category category = new Category("json", "json5@@");
 		Category category1 = new Category("test", "test6@@");
 		categories.add(category);
 		categories.add(category1);
 		categoryRepo.saveAll(categories);
 		// when - action or behavior that we are going test
-		ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/category/")
-				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(category)));
+		ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/category/"));
+
 		// then - verify the result or output using assert statements
-		response.andDo(print()).andExpect(MockMvcResultMatchers.status().isOk());
+		response.andDo(print()).andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(jsonPath("$.[0].name", is(category.getName())))
+		.andExpect(jsonPath("$.[1].name", is(category1.getName())));
 
 	}
 

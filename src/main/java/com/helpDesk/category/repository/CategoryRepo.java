@@ -15,9 +15,6 @@ public interface CategoryRepo extends JpaRepository<Category, Integer> {
 	
 	@Query(value="Select * from category where code=?",nativeQuery = true)
 	public Category findByCode(String code);
-
-	@Query(value = "SELECT * FROM Category u WHERE u.Flag=0 ", nativeQuery = true)
-	List<Category> findAllCategories();
 	
 	@Query(value="select * from category where parent_id=?",nativeQuery =true)
 	public List<Category> getChild(int id);

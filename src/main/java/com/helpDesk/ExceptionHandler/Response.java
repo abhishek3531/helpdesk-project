@@ -3,17 +3,16 @@ package com.helpDesk.ExceptionHandler;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
-@NoArgsConstructor
 @ToString
 public class Response {
-	
-	 private String Message;
-	 public Response(String message) {
+
+	private String Message;
+
+	public Response(String message) {
 		super();
 		this.Message = message;
 	}
-	 
+
 	public String getMessage() {
 		return Message;
 	}
@@ -25,6 +24,5 @@ public class Response {
 	public Response() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 }
